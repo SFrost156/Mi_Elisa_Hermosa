@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Mi Princesa Elisa💖✨</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <canvas id="canvas-bg"></canvas>
+    <div id="particles-container"></div>
+
+    <div class="music-player">
+        <button id="btn-music" class="btn-round" aria-label="Reproducir música">🎵</button>
+        <audio id="bg-music" loop>
+            <source src="resources/Frances Limon.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <main class="story-container">
+        
+        <section id="sec-1" class="story-section active">
+            <div class="glass-card central-fade">
+                <h1 class="gold-text">Para Mi Princesa Elisa💖✨</h1>
+                <p class="sparkle-text">Mi amorcito, creé este espacio solo para ti. Sé que estás herida, y lo único que deseo es que me escuches sin presiones, a tu propio ritmo. Por favor, quédate hasta el final de mi historia.</p>
+                <button class="btn-next" onclick="nextSection(2)">Comenzar a leer ➔</button>
+            </div>
+        </section>
+
+        <section id="sec-2" class="story-section">
+            <div class="glass-card">
+                <h2>Sinceridad y Arrepentimiento Total</h2>
+                <div class="text-narrative">
+                    <p>Tú eres lo más importante para mí, eres mi felicidad entera y la única persona a la que amo con cada fibra de mi ser, mi cielito. Fui yo quien falló en cuidarte y proteger tu paz.</p>
+                    <p>Acepto completamente mis fallas; no quiero justificar absolutamente nada ni minimizar tu tristeza. Sé que te hice llorar y que rompí parte de la confianza que tenías en mí, y eso me duele en lo más profundo de mi alma. Perdón por haberte hecho sentir que tu dolor no importaba, jamás debí minimizar tus sentimientos.</p>
+                </div>
+                <div class="nav-buttons">
+                    <button class="btn-back" onclick="prevSection(1)">🡠 Volver</button>
+                    <button class="btn-next" onclick="nextSection(3)">Abrir mi corazón ➔</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="sec-3" class="story-section wide-section">
+            <div class="interactive-envelope-box">
+                <div id="mail-envelope" class="envelope-click-base" onclick="openLetter()">
+                    <div class="env-flap-top"></div>
+                    <div class="env-seal-heart">❤️</div>
+                    <p class="env-tag-text">Toca para abrir, mi elisa hermosa</p>
+                </div>
+
+                <div id="mail-letter" class="letter-paper-card letter-hidden">
+                    <h3>Mi Elisa hermosa, escúchame con el corazón:</h3>
+                    <div class="letter-scroll-content">
+                        <p>Tú eres lo más importante para mí, eres mi felicidad entera y la única persona a la que amo con cada fibra de mi ser, mi elisa hermosa. Entendí perfectamente que un grupo de TikTok, un mensaje o cualquier otra amistad no valen absolutamente nada comparados con la paz de tu corazón. Me salí por completo de todo aquello que te causaba dudas porque ninguna red social ni ninguna otra persona importa más que tú. No quiero conservar nada que te reste tranquilidad.</p>
+                        <p>Me haces feliz tú, y solo tú, y de verdad quiero arreglar las cosas contigo, mi cielito lindo. Tú eres una pareja completamente saludable, hermosa y única; fui yo quien falló en demostrarte que eres mi prioridad absoluta, y me arrepiento profundamente. No espero que todo se arregle hoy ni te presiono, mi amor, pero quiero que sepas que de verdad deseo con todo mi ser arreglar las cosas y trabajar en mí mismo para ser el hombre maduro que mereces.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-buttons static-nav">
+                <button class="btn-back" onclick="prevSection(2)">🡠 Volver</button>
+                <button id="nav-from-letter" class="btn-next hidden" onclick="nextSection(4)">Siguiente ➔</button>
+            </div>
+        </section>
+
+        <section id="sec-4" class="story-section">
+            <div class="glass-card box-scroll">
+                <h2>Nuestro Camino y Mi Compromiso</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>Proteger Tu Paz</h4>
+                            <p>Entendí que amar también significa cuidar profundamente la paz del otro. Por eso, mi compromiso principal es erradicar cualquier actitud que te cause angustia o control.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>Mi Promesa de Cambio</h4>
+                            <p>Trabajaré todos los días en mí mismo para ser el hombre estable que mereces. Cuidaré mi salud y aprenderé a construir un desapego e independencia sanos, demostrando mis promesas con hechos claros, no solo palabras.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-buttons">
+                    <button class="btn-back" onclick="prevSection(3)">🡠 Volver</button>
+                    <button class="btn-next" onclick="nextSection(5)">Recuerdos ➔</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="sec-5" class="story-section">
+            <h2>Momentos que Llevo Conmigo</h2>
+            <div class="heart-gallery">
+                <div class="gallery-item item-1" onclick="zoomImage(this)"><img src="resources/foto1.jfif" alt="Foto 1"></div>
+                <div class="gallery-item item-2" onclick="zoomImage(this)"><img src="resources/foto2.jfif" alt="Foto 2"></div>
+                <div class="gallery-item item-3" onclick="zoomImage(this)"><img src="resources/foto3.jfif" alt="Foto 3"></div>
+                <div class="gallery-item item-4" onclick="zoomImage(this)"><img src="resources/foto4.jfif" alt="Foto 4"></div>
+                <div class="gallery-item item-5" onclick="zoomImage(this)"><img src="resources/foto5.jfif" alt="Foto 5"></div>
+                <div class="gallery-item item-6" onclick="zoomImage(this)"><img src="resources/foto6.jfif" alt="Foto 6"></div>
+                <div class="gallery-item item-7" onclick="zoomImage(this)"><img src="resources/foto7.jfif" alt="Foto 7"></div>
+                <div class="gallery-item item-8" onclick="zoomImage(this)"><img src="resources/foto8.jfif" alt="Foto 8"></div>
+                <div class="gallery-item item-9" onclick="zoomImage(this)"><img src="resources/foto9.jfif" alt="Foto 9"></div>
+                <div class="gallery-item item-10" onclick="zoomImage(this)"><img src="resources/foto10.jfif" alt="Foto 10"></div>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn-back" onclick="prevSection(4)">🡠 Volver</button>
+                <button class="btn-next" onclick="nextSection(6)">Mensaje final ➔</button>
+            </div>
+        </section>
+
+        <section id="sec-6" class="story-section">
+            <div class="glass-card box-scroll text-center">
+                <h2>Siempre Aquí</h2>
+                <div class="text-narrative">
+                    <p>Jamás dejaré de quererte ni de luchar por un futuro contigo. Sigues siendo el amor de mi vida, mi cielito lindo, mi princesa hermosa.</p>
+                    <p class="highlight-text">No voy a tirar tus cosas ni tus regalos, porque tú eres mi presente intacto y el único futuro que deseo. No importa si toma días, semanas o meses.</p>
+                    <p>Cuando tú sientas que es el momento correcto de hablar, ahí estaré, respetando siempre tus decisiones y esperando con esperanza que podamos volver a arreglar las cosas, demostrándote que eres lo más importante para mí.</p>
+                </div>
+                <div class="final-actions">
+                    <button class="btn-restart" onclick="restartExperience()">Reiniciar Experiencia ↺</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="image-modal" class="modal" onclick="closeModal()">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="img-modal-src">
+    </div>
+
+    <script src="controllers/script.js"></script>
+</body>
+</html>
