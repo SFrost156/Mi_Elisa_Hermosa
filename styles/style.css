@@ -1,0 +1,371 @@
+/* --- Estilos Globales y Fondo Cinematográfico Unificado --- */
+:root {
+    --rosa-pastel: #ffd3e1;
+    --blanco: #ffffff;
+    --rojo-vino: #581825;
+    --dorado-suave: #f4d068;
+    --glass-bg: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.15);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: radial-gradient(circle at center, #1a0810 0%, #050205 100%);
+    color: var(--blanco);
+}
+
+#canvas-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+#particles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* --- Contenedor de Capas Centrado --- */
+.story-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.story-section {
+    position: absolute;
+    width: 90%;
+    max-width: 650px;
+    opacity: 0;
+    transform: scale(0.92) translateY(30px);
+    pointer-events: none;
+    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.wide-section {
+    width: 100%;
+    max-width: 650px;
+}
+
+.story-section.active {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    pointer-events: auto;
+}
+
+/* --- Glassmorphism --- */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 35px;
+    width: 100%;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    text-align: left;
+}
+
+.box-scroll {
+    max-height: 75vh;
+    overflow-y: auto;
+}
+
+.box-scroll::-webkit-scrollbar { width: 6px; }
+.box-scroll::-webkit-scrollbar-thumb { background: rgba(255, 211, 225, 0.3); border-radius: 10px; }
+
+h1, h2, h3, h4 {
+    color: var(--rosa-pastel);
+    margin-bottom: 20px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.gold-text {
+    color: var(--dorado-suave);
+    text-shadow: 0 0 10px rgba(244, 208, 104, 0.4);
+}
+
+.text-narrative p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 15px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.text-center { text-align: center; }
+.highlight-text {
+    color: var(--rosa-pastel);
+    font-size: 1.2rem !important;
+    font-weight: 500;
+    margin: 20px 0;
+}
+
+/* --- Botones --- */
+.nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+    width: 100%;
+}
+
+button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
+    color: var(--blanco);
+    padding: 12px 24px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: var(--rosa-pastel);
+    color: var(--rojo-vino);
+    box-shadow: 0 0 15px rgba(255, 211, 225, 0.5);
+    transform: translateY(-2px);
+}
+
+.btn-next { border-color: var(--rosa-pastel); }
+.btn-restart { border-color: var(--dorado-suave); margin: 20px auto 0 auto; display: block; }
+.music-player { position: fixed; top: 20px; right: 20px; z-index: 10; }
+.btn-round { width: 45px; height: 45px; padding: 0; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.2rem; }
+
+/* --- NUEVO SISTEMA DE REEMPLAZO ABSOLUTO DE CARTA --- */
+.interactive-envelope-box {
+    width: 100%;
+    height: 380px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Base del sobre cerrado */
+.envelope-click-base {
+    width: 290px;
+    height: 190px;
+    background: var(--rojo-vino);
+    border-radius: 12px;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    z-index: 5;
+}
+
+.env-flap-top {
+    position: absolute;
+    top: 0;
+    width: 0; height: 0;
+    border-left: 145px solid transparent;
+    border-right: 145px solid transparent;
+    border-top: 105px solid #3d111a;
+}
+
+.env-seal-heart { font-size: 2.5rem; margin-bottom: 10px; z-index: 6; }
+.env-tag-text { font-size: 0.9rem; color: var(--rosa-pastel); z-index: 6; font-weight: 500; }
+
+/* Tarjeta limpia de la carta que toma el lugar exacto */
+.letter-paper-card {
+    background: #ffffff;
+    color: #222222;
+    padding: 30px;
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.6);
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1), transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 10;
+}
+
+.letter-paper-card h3 {
+    color: var(--rojo-vino);
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: left;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eaeaea;
+    padding-bottom: 10px;
+}
+
+.letter-scroll-content {
+    overflow-y: auto;
+    flex-grow: 1;
+    padding-right: 5px;
+}
+
+.letter-scroll-content p {
+    font-size: 0.96rem;
+    line-height: 1.6;
+    color: #333333;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.letter-scroll-content::-webkit-scrollbar { width: 5px; }
+.letter-scroll-content::-webkit-scrollbar-thumb { background: rgba(88, 24, 37, 0.2); border-radius: 4px; }
+
+/* Clases de animación controladas por JS */
+.letter-hidden { opacity: 0; transform: scale(0.8); pointer-events: none; }
+.letter-revealed { opacity: 1; transform: scale(1); pointer-events: auto; }
+.envelope-faded { opacity: 0; transform: scale(1.1); pointer-events: none; }
+
+.static-nav { margin-top: 20px; width: 100%; }
+.hidden { display: none !important; }
+
+/* --- Línea del Tiempo --- */
+.timeline {
+    position: relative;
+    border-left: 2px solid rgba(255, 211, 225, 0.3);
+    padding-left: 20px;
+    margin: 20px 0;
+}
+
+.timeline-item { position: relative; margin-bottom: 25px; }
+.timeline-dot {
+    position: absolute;
+    left: -27px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    background: var(--dorado-suave);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--dorado-suave);
+}
+
+/* --- Galería Silueta de Corazón (Tamaño Agrandado) --- */
+.heart-gallery {
+    position: relative;
+    width: 420px;
+    height: 420px;
+    margin: 30px auto;
+}
+
+.gallery-item {
+    position: absolute;
+    width: 75px;
+    height: 75px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2.5px solid var(--blanco);
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+.gallery-item img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+}
+
+.gallery-item:hover { 
+    transform: scale(1.3); 
+    z-index: 50; 
+    box-shadow: 0 12px 25px rgba(255, 211, 225, 0.4);
+}
+
+/* Posiciones calculadas para fotos de 75px */
+.item-1  { left: 172px; top: 320px; }
+.item-2  { left: 100px; top: 240px; }
+.item-3  { left: 244px; top: 240px; }
+.item-4  { left: 35px;  top: 155px; }
+.item-5  { left: 309px; top: 155px; }
+.item-6  { left: 20px;  top: 65px;  }
+.item-7  { left: 324px; top: 65px;  }
+.item-8  { left: 95px;  top: 20px;  }
+.item-9  { left: 249px; top: 20px;  }
+.item-10 { left: 172px; top: 80px;  }
+
+/* --- Ventana Modal --- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    justify-content: center; align-items: center;
+}
+
+.modal-content { max-width: 85%; max-height: 80%; border-radius: 8px; }
+.close-modal { position: absolute; top: 20px; right: 35px; color: #f1f1f1; font-size: 40px; cursor: pointer; }
+
+.floating-element {
+    position: absolute;
+    pointer-events: none;
+    z-index: 2;
+    animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(105vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.7; }
+    90% { opacity: 0.7; }
+    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+}
+
+/* Adaptabilidad Responsiva Celulares */
+@media (max-width: 480px) {
+    .glass-card { padding: 22px; }
+    .text-narrative p { font-size: 0.95rem; }
+    .interactive-envelope-box { height: 350px; }
+    
+    /* Reajuste de galería para móviles para mantener el corazón */
+    .heart-gallery { 
+        width: 320px; 
+        height: 320px; 
+    }
+    .gallery-item { 
+        width: 58px; 
+        height: 58px; 
+        border-width: 2px;
+    }
+    .item-1  { left: 131px; top: 245px; }
+    .item-2  { left: 76px;  top: 185px; }
+    .item-3  { left: 186px; top: 185px; }
+    .item-4  { left: 26px;  top: 120px; }
+    .item-5  { left: 236px; top: 120px; }
+    .item-6  { left: 15px;  top: 50px;  }
+    .item-7  { left: 247px; top: 50px;  }
+    .item-8  { left: 72px;  top: 15px;  }
+    .item-9  { left: 190px; top: 15px;  }
+    .item-10 { left: 131px; top: 60px;  }
+}
